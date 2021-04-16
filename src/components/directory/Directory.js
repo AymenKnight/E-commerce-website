@@ -42,8 +42,14 @@ export const Directory = ({}) => {
     const [sections, setsections] = useState(Initail_sections)
     return (
       <div className="directory_menu">
-        {sections.map((section) => (
-          <MenuItem title={section.title} key={section.id} imageUrl={section.imageUrl} size={section.size} />
+        {sections.map(({ id, imageUrl, linkUrl, title, size }) => (
+          <MenuItem
+            title={title}
+            key={id}
+            imageUrl={imageUrl}
+            size={size}
+            linkUrl={linkUrl}
+          />
         ))}
       </div>
     );
