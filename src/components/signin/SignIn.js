@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React from 'react'
 import { useState } from 'react'
+import Custom_Button from '../custom_Button/Custom_Button'
 import Form_Input from '../form_input/Form_Input'
 import "./SignIn.styles.scss"
 
@@ -20,7 +21,7 @@ export default function SignIn() {
     }
     return (
       <div className="sign_In">
-        <h1> I already have a account </h1>
+        <h1 className="title"> I already have a account </h1>
         <span  className="sign_Span" > Sign in with your email and password </span>
         <form className="form" onSubmit={hundleSubmit}>
           <Form_Input
@@ -39,7 +40,7 @@ export default function SignIn() {
             required
             hundleChange={hundleChange}
           />
-          <input type="submit" value="Submit Form" />
+          <Custom_Button type="submit" > Sign In  </Custom_Button>
         </form>
       </div>
     );

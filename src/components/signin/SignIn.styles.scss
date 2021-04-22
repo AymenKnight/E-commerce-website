@@ -1,7 +1,14 @@
 .sign_In {
-    width: 34vw;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
 }
 .sign_Span {
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Open Sans Condensed';
+    letter-spacing: 0.1px;
+}
+.title {
+    margin: 20px 0;
 }
