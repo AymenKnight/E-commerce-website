@@ -44,8 +44,13 @@ export default function SignIn() {
             required
             hundleChange={hundleChange}
           />
-          <Custom_Button type="submit"> Sign In </Custom_Button>
-          <Custom_Button  onClick={signInWithGoogle} > Sign In </Custom_Button>
+          <div  className="buttons_Contianer" >
+            <Custom_Button type="submit"> Sign In </Custom_Button>
+            <Custom_Button onClick={signInWithGoogle} isGoogleSignIn >
+              {" "}
+              Sign In With Google{" "}
+            </Custom_Button>
+          </div>
         </form>
       </div>
     );
