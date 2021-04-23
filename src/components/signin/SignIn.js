@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Custom_Button from '../custom_Button/Custom_Button'
 import Form_Input from '../form_input/Form_Input'
 import "./SignIn.styles.scss"
+import {signInWithGoogle} from "../../firebase/firebase.utils"
 
 export default function SignIn() {
     const [state, setstate] = useState({
@@ -22,7 +23,10 @@ export default function SignIn() {
     return (
       <div className="sign_In">
         <h1 className="title"> I already have a account </h1>
-        <span  className="sign_Span" > Sign in with your email and password </span>
+        <span className="sign_Span">
+          {" "}
+          Sign in with your email and password{" "}
+        </span>
         <form className="form" onSubmit={hundleSubmit}>
           <Form_Input
             label="Email"
@@ -40,7 +44,8 @@ export default function SignIn() {
             required
             hundleChange={hundleChange}
           />
-          <Custom_Button type="submit" > Sign In  </Custom_Button>
+          <Custom_Button type="submit"> Sign In </Custom_Button>
+          <Custom_Button  onClick={signInWithGoogle} > Sign In </Custom_Button>
         </form>
       </div>
     );
