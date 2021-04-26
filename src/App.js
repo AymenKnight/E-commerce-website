@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import ShopPage from "./pages/Shop/ShopPage";
 import Header from "./components/header/Header";
 import SignPage from "./pages/SignPage/SignPage";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 
 function App() {
@@ -13,15 +13,26 @@ function App() {
 
   useEffect(() => {
     let unsubscribe;
-    unsubscribe = auth.onAuthStateChanged((user) => {
-      setcurrentUser(user);
-       console.log(user);
+    unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      if(userAuth){
+     const userRef= createUserProfileDocument(userAuth);
+     (await userRef).onSnapshot(snapShot=>{
+       setcurrentUser({
+         id:snapShot.id,
+         ...snapShot.data()
+       })
+       
+     })
+      }
+      else setcurrentUser(null);
     });
     return function cleanup(){
+   
       unsubscribe();
     }
     
   },[])
+     console.log(currentUser);
   return (
     <div>
       <Header  currentUser={currentUser}  />
