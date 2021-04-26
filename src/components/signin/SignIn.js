@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Custom_Button from '../custom_Button/Custom_Button'
 import Form_Input from '../form_input/Form_Input'
 import "./SignIn.styles.scss"
-import {signInWithGoogle} from "../../firebase/firebase.utils"
+import {auth, signInWithGoogle} from "../../firebase/firebase.utils"
 
 export default function SignIn() {
     const [state, setstate] = useState({
@@ -12,9 +12,15 @@ export default function SignIn() {
         password:"",
     })
 
-    const hundleSubmit=(e)=>{
+    const hundleSubmit= async (e)=>{
      e.preventDefault();
-     console.log(state);
+     const {email,password}=state;
+     try {
+       await auth.signInWithEmailAndPassword(email,password);
+       setstate({ email: "", password: "" });
+     } catch (error) {
+       console.log(" error ! ",error.message)
+     }
     }
     const hundleChange=(e)=>{
      const {name,value}=e.target;
