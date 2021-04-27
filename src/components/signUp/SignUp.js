@@ -18,7 +18,7 @@ export default function SignUp() {
     const hundleSubmit= async (e)=>{
         e.preventDefault();
         const {displayName,email,password,confirmPassword}=state
-        if(password != confirmPassword){
+        if(password !== confirmPassword){
               alert("Passwords don't match!");
               return;
         }
