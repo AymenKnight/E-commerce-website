@@ -14,7 +14,7 @@ const initialState = {
            
    
        default:
-         return initialState;
+         return state;
    }
 }
 

@@ -1,13 +1,16 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Header.scss"
 import {ReactComponent as Logo} from "../assets/crown.svg"
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import Cart_Icon from '../cart_icon/Cart_Icon';
+import Cart_Dropdown from '../cart_dropdown/Cart_Dropdown';
 
 
 
- function Header({ currentUser }) {
+ function Header({ currentUser ,hidden}) {
   
   return (
     <div className="header">
@@ -30,13 +33,16 @@ import { connect } from 'react-redux';
             Sign In
           </Link>
         }
+        <Cart_Icon />
       </div>
+      { hidden ? null : <Cart_Dropdown />}
     </div>
   );
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({user:{currentUser},cart :{hidden}}) => ({
+  currentUser,
+  hidden
 });
 
 export default connect(mapStateToProps)(Header);
