@@ -14,6 +14,7 @@ function App() {
   useEffect(() => {
     let unsubscribe;
     unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      console.log(userAuth)
       if(userAuth){
      const userRef= createUserProfileDocument(userAuth);
      (await userRef).onSnapshot(snapShot=>{

@@ -52,7 +52,7 @@ export default function SignIn() {
           />
           <div  className="buttons_Contianer" >
             <Custom_Button type="submit"> Sign In </Custom_Button>
-            <Custom_Button onClick={signInWithGoogle} isGoogleSignIn >
+            <Custom_Button  type="button" onClick={signInWithGoogle} isGoogleSignIn >
               {" "}
               Sign In With Google{" "}
             </Custom_Button>
