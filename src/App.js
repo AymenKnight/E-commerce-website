@@ -1,7 +1,7 @@
 import { useEffect} from "react";
 import "./App.css";
 import HomePage from "./pages/homepage/homepage";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import ShopPage from "./pages/Shop/ShopPage";
 import Header from "./components/header/Header";
 import SignPage from "./pages/SignPage/SignPage";
@@ -12,7 +12,7 @@ import { setcurrentUserAction } from "./redux/user/user.actions";
 
 function App(props) {
 
-   const {setcurrentUser}=props
+   const {currentUser,setcurrentUser}=props
 
   useEffect(() => {
     let unsubscribe;
@@ -31,7 +31,7 @@ function App(props) {
     return function cleanup() {
       unsubscribe();
     };
-  });
+  },[0]);
 
   return (
     <div>
@@ -39,14 +39,18 @@ function App(props) {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop/" component={ShopPage} />
-        <Route path="/signin/" component={SignPage} />
+        <Route exact path="/signin/" render={()=>currentUser ? <Redirect to="/" /> : <SignPage/> } />
       </Switch>
     </div>
   );
 }
 
+const mapStateToProps=({user})=>({
+  currentUser:user.currentUser
+})
+
 const mapDispatchToProps = (dispatch) => ({
   setcurrentUser: (user) => dispatch(setcurrentUserAction(user)),
 });  
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
