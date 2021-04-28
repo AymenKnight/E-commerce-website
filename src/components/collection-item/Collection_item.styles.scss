@@ -1,9 +1,21 @@
 .collection_item{
+  position: relative;
   width: 22%;
   display: flex;
   flex-direction: column;
   height: 350px;
   align-items: center;
+
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+
+    .button {
+      display: flex;
+      opacity: 0.85;
+    }
+  }
 }
 .image {
   width: 100%;
@@ -12,9 +24,19 @@
   background-size: cover;
   margin-bottom: 5px;
 }
+
+.button {
+  position: absolute;
+  width: 80%;
+  top:255px;
+  opacity: 0.7;
+  display: none;
+}
+
+
 .collection_footer {
     height: 5%;
-width: 100%;
+ width: 100%;
  display: flex;
  justify-content: space-between;
  font-size: 18px;
