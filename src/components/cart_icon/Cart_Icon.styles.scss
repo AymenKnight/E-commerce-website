@@ -1,5 +1,5 @@
 .cart_icon {
-    position: relative;
+  position: relative;
   width: 45px;
   height: 45px;
   display: flex;
@@ -17,6 +17,12 @@
     font-weight: bold;
     position:absolute;
     bottom: 11px;
-    left:11.5px
+    text-align: center; 
 
+    &.less_then_10 {
+         left:11.5px;   
+    }
+    &.more_then_10 {
+          left:8.5px;
+    }
 }

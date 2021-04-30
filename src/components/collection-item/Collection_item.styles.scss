@@ -16,6 +16,13 @@
       opacity: 0.85;
     }
   }
+  .button {
+    position: absolute;
+    width: 80%;
+    top: 255px;
+    opacity: 0.7;
+    display: none;
+  }
 }
 .image {
   width: 100%;
@@ -25,13 +32,7 @@
   margin-bottom: 5px;
 }
 
-.button {
-  position: absolute;
-  width: 80%;
-  top:255px;
-  opacity: 0.7;
-  display: none;
-}
+
 
 
 .collection_footer {
