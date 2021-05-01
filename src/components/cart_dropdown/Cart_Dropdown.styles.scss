@@ -19,6 +19,11 @@
     flex-direction: column;
     overflow: scroll;
 
+    .empty_list {
+        font-size: 18px;
+        margin: 60px auto;
+    }
+
 }
 .cart_item_container::-webkit-scrollbar{
     display: none;
