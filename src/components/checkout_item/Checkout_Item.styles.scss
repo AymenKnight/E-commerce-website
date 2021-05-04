@@ -22,8 +22,16 @@
 
     }
     .quantity{
+        display: flex;
         width: 23%;
-        padding-left: 20px;
+        padding-left: 3px;
+
+        .arrow {
+            cursor: pointer;
+        }
+        .quantity_value{
+            margin: 0 10px;
+        }
 
     }
     .price {

@@ -14,3 +14,19 @@ export const addItemToCart=(cartItems,cartItemToAdd)=>{
 export const deleteItemFromCart=(cartItems,cartItemToDelete)=>{
     return cartItems.filter((cartItem)=>cartItem.id!=cartItemToDelete.id)
 }
+
+export const decreaseItemQuantity=(cartItems,cartitemToDecreaseQuantity)=>{
+  const exitingCartItem=cartItems.find(cartItem=>cartItem.id==cartitemToDecreaseQuantity.id)
+
+  if(exitingCartItem.quantity==1){
+  return  deleteItemFromCart(cartItems,exitingCartItem)
+  }
+  else{
+    return cartItems.map(cartItem=>
+      cartItem.id==cartitemToDecreaseQuantity.id ? 
+      {...cartItem,quantity:cartitemToDecreaseQuantity.quantity - 1 }
+      : 
+      cartItem
+      )
+  }
+}
