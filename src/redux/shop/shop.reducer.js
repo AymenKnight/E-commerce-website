@@ -1,7 +1,7 @@
 import shopData from "../../pages/Shop/ShopData";
 
 const initialState = {
-  collection :shopData
+  collections :shopData
 };
 
 export const shopReducer = (state=initialState, action) => {
