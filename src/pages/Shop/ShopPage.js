@@ -12,7 +12,7 @@ import CollectionPage from '../collectionPage/CollectionPage';
   return (
     <div>
       <Route exact component={Collection_OverView} path={`${match.path}`} />
-      <Route  component={CollectionPage} path={`${match.path}:collectionId`} />
+      <Route    component={CollectionPage} path={`${match.path}:collectionId`} />
     </div>
   );
 }
