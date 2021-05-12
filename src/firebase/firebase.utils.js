@@ -59,4 +59,21 @@ const config = {
 
   }
 
+
+  export const convertCollectiosSnapShotToMap=(collections)=>{
+    const transformedCollections =collections.docs.map(doc=>{
+      const {title,items}=doc.data();
+      return {
+        id: doc.id,
+        routeName: encodeURI(title.toLowerCase()),
+        title,
+        items,
+      };
+    }) 
+    return  transformedCollections.reduce((acc,collection)=>{
+      acc[collection.title.toLowerCase()] =collection
+      return acc
+    },{})
+  }
+
   export default firebase;
