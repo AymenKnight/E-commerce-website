@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import ShopPage from "./pages/Shop/ShopPage";
 import Header from "./components/header/Header";
 import SignPage from "./pages/SignPage/SignPage";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import {  auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
 import { setcurrentUserAction } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
@@ -15,7 +15,7 @@ import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
 
 function App(props) {
 
-   const {currentUser,setcurrentUser}=props
+   const { currentUser, setcurrentUser } = props;
 
   useEffect(() => {
     let unsubscribe;
@@ -30,6 +30,7 @@ function App(props) {
           });
         });
       } else setcurrentUser(userAuth);
+   
     });
     return function cleanup() {
       unsubscribe();
@@ -54,7 +55,7 @@ function App(props) {
 }
 
 const mapStateToProps=createStructuredSelector({
-  currentUser:selectCurrentUser
+  currentUser:selectCurrentUser ,
 })
 
 const mapDispatchToProps = (dispatch) => ({

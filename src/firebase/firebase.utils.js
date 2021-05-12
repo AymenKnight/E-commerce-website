@@ -44,4 +44,19 @@ const config = {
     }
   }
 
+
+  export const addCollectionAndItems = async (collectionKey,ObjectsToadd)=>{
+    const collectionRef = firestore.collection(collectionKey);
+    console.log(collectionRef)
+
+    const batch=firestore.batch()
+    ObjectsToadd.forEach(obj => {
+     const newDocRef=collectionRef.doc() 
+     console.log(newDocRef)
+     batch.set(newDocRef,obj)
+    });
+    return await  batch.commit()
+
+  }
+
   export default firebase;
