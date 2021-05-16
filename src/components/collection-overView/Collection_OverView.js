@@ -6,11 +6,18 @@ import { selecteShopCollectionsForPreview } from '../../redux/shop/shop.selector
 import Collection_Preview from '../preview-collection/Collection_Preview';
 import "./Collection_OverView.styles.scss"
 
- function Collection_OverView({ collection }) {
+ function Collection_OverView({ collection,match,history }) {
   return (
     <div className="collection_overview">
       {collection.map(({ id, items, title, routeName }) => (
-        <Collection_Preview key={id} items={items} title={title} routeName={routeName} />
+        <Collection_Preview
+          key={id}
+          items={items}
+          title={title}
+          routeName={routeName}
+          match={match}
+          history={history}
+        />
       ))}
     </div>
   );

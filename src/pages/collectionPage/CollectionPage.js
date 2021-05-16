@@ -10,8 +10,6 @@ import "./CollectionPage.styles.scss"
 
      const {items,title}  =collection
 
-    console.log("collection page :", match.params.collectionId);
-
     return (
       <div className="collectionPage">
       <h2  className="title" > {title}  </h2>

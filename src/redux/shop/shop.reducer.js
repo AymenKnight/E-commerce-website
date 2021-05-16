@@ -1,4 +1,3 @@
-import shopData from "../../pages/Shop/ShopData";
 import { shop_actions } from "./shop.actions.Constants";
 
 const initialState = {
