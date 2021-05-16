@@ -10,7 +10,7 @@ import "./Collection_OverView.styles.scss"
   return (
     <div className="collection_overview">
       {collection.map(({ id, items, title, routeName }) => (
-        <Collection_Preview key={id} items={items} title={title} />
+        <Collection_Preview key={id} items={items} title={title} routeName={routeName} />
       ))}
     </div>
   );

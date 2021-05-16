@@ -71,7 +71,9 @@ const config = {
       };
     }) 
     return  transformedCollections.reduce((acc,collection)=>{
-      acc[collection.title.toLowerCase()] =collection
+      // inside this function we transformed our collections that are in format of array into TableHash (object Normilisation)
+      
+      acc[collection.title.toLowerCase()] =collection ;
       return acc
     },{})
   }
