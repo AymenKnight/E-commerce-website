@@ -1,32 +1,21 @@
 /* eslint-disable react/jsx-pascal-case */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
+import { createStructuredSelector } from 'reselect';
 import Collection_OverView from '../../components/collection-overView/Collection_OverView';
 import { With_Spinner } from '../../components/with_Spinner/With_Spinner';
-import { convertCollectiosSnapShotToMap, firestore } from '../../firebase/firebase.utils';
-import { updateCollectionAction } from '../../redux/shop/shop.actions';
+import { fetchCollectionStartAsyncAction } from '../../redux/shop/shop.actions';
+import { selecteCollectionIsFetching } from '../../redux/shop/shop.selectors';
 import CollectionPage from '../collectionPage/CollectionPage';
 
 
 const  Collection_OverViewWithSpinner= With_Spinner(Collection_OverView)
 const CollectionPageWithSpinner = With_Spinner(CollectionPage);
 
- function ShopPage({ match, updateCollections }) {
-
-   const [loading, setloading] = useState(true)
-
+ function ShopPage({ match, fetchCollectionStartAsync, loading }) {
    useEffect(() => {
-     let unsubscribe;
-     const collectionRef = firestore.collection("collections");
-
-     collectionRef.onSnapshot(async (snapshot) => {
-       const collectionMap = convertCollectiosSnapShotToMap(snapshot);
-       console.log(collectionMap);
-       updateCollections(collectionMap)
-       setloading(false)
-     });
-
+     fetchCollectionStartAsync();
      return () => {};
    }, [0]);
 
@@ -49,8 +38,13 @@ const CollectionPageWithSpinner = With_Spinner(CollectionPage);
    );
  }
 
-const mapDispatchToProps =dispatch=>({
-  updateCollections :collectionMap=>  dispatch(updateCollectionAction(collectionMap))
+const mapDispatchToProps = (dispatch) => ({
+  fetchCollectionStartAsync: () =>
+    dispatch(fetchCollectionStartAsyncAction()),
+});
+
+const mapStateToProps =createStructuredSelector({
+  loading :selecteCollectionIsFetching
 })
 
-export default connect(null,mapDispatchToProps)(ShopPage);
+export default connect(mapStateToProps,mapDispatchToProps)(ShopPage);
