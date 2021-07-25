@@ -17,11 +17,6 @@ export const fetchCollectionFailedAction = (errorMessage) => ({
 
 export const fetchCollectionStartAsyncAction = () => {
     return dispatch=> {
-           const collectionRef = firestore.collection("collections");
-           dispatch(fetchCollectionStartAction())
-           collectionRef.get().then(snapshot => {
-             const collectionMap = convertCollectiosSnapShotToMap(snapshot);
-             dispatch(fetchCollectionCompletedAction(collectionMap))
-           }).catch(error=>dispatch(fetchCollectionFailedAction(error.message)));
+        
     }
 };
