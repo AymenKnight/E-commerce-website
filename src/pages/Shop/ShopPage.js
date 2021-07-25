@@ -5,7 +5,7 @@ import { Route } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 import Collection_OverView from '../../components/collection-overView/Collection_OverView';
 import { With_Spinner } from '../../components/with_Spinner/With_Spinner';
-import { fetchCollectionStartAsyncAction } from '../../redux/shop/shop.actions';
+import { fetchCollectionStartAction, fetchCollectionStartAsyncAction } from '../../redux/shop/shop.actions';
 import { selecteCollectionIsFetching } from '../../redux/shop/shop.selectors';
 import CollectionPage from '../collectionPage/CollectionPage';
 
@@ -13,9 +13,9 @@ import CollectionPage from '../collectionPage/CollectionPage';
 const  Collection_OverViewWithSpinner= With_Spinner(Collection_OverView)
 const CollectionPageWithSpinner = With_Spinner(CollectionPage);
 
- function ShopPage({ match, fetchCollectionStartAsync, loading }) {
+ function ShopPage({ match, fetchCollectionsStart, loading }) {
    useEffect(() => {
-     fetchCollectionStartAsync();
+     fetchCollectionsStart();
      return () => {};
    }, [0]);
 
@@ -39,8 +39,7 @@ const CollectionPageWithSpinner = With_Spinner(CollectionPage);
  }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionStartAsync: () =>
-    dispatch(fetchCollectionStartAsyncAction()),
+  fetchCollectionsStart: () => dispatch(fetchCollectionStartAction()),
 });
 
 const mapStateToProps =createStructuredSelector({
