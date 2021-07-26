@@ -5,7 +5,7 @@ import { Route } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 import Collection_OverView from '../../components/collection-overView/Collection_OverView';
 import { With_Spinner } from '../../components/with_Spinner/With_Spinner';
-import { fetchCollectionStartAction, fetchCollectionStartAsyncAction } from '../../redux/shop/shop.actions';
+import { fetchCollectionStartAction } from '../../redux/shop/shop.actions';
 import { selecteCollectionIsFetching } from '../../redux/shop/shop.selectors';
 import CollectionPage from '../collectionPage/CollectionPage';
 
