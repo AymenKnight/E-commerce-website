@@ -8,16 +8,18 @@ import Header from "./components/header/Header";
 import SignPage from "./pages/SignPage/SignPage";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
-import { setcurrentUserAction } from "./redux/user/user.actions";
+import { checkUserSession, setcurrentUserAction } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
 
 function App(props) {
-  const { currentUser, setcurrentUser } = props;
+  const { currentUser, checkUserSession } = props;
 
   useEffect(() => {
-    let unsubscribe;
+
+    checkUserSession();
+   /* let unsubscribe;
     unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       console.log(userAuth);
       if (userAuth) {
@@ -32,7 +34,7 @@ function App(props) {
     });
     return function cleanup() {
       unsubscribe();
-    };
+    };*/
   }, [0]);
 
   return (
@@ -57,7 +59,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setcurrentUser: (user) => dispatch(setcurrentUserAction(user)),
+  checkUserSession :()=>dispatch(checkUserSession())  ,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
