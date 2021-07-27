@@ -16,8 +16,19 @@ const initialState = {
      case user_actions.SIGN_IN_FAILED:
        return {
          ...state,
-         error:action.payload
-       }
+         error: action.payload,
+       };
+     case user_actions.SIGN_OUT_SUCCESS:
+       return {
+         ...state,
+         currentUser: null,
+         error: null,
+       };
+     case user_actions.SIGN_Out_FAILED:
+       return {
+         ...state,
+         error: action.payload,
+       };
 
      default:
        return state;

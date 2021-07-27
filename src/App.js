@@ -17,7 +17,6 @@ function App(props) {
   const { currentUser, checkUserSession } = props;
 
   useEffect(() => {
-
     checkUserSession();
    /* let unsubscribe;
     unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
