@@ -1,24 +1,27 @@
 import { call ,all,put , takeLatest } from "redux-saga/effects";
 import { auth, createUserProfileDocument, getCurrentUser, GoogleProvider } from "../../firebase/firebase.utils";
-import {  signInSuccess,signInFailed, signOutSuccess, signOutFailed } from "./user.actions";
+import {  signInSuccess,signInFailed, signOutSuccess, signOutFailed, signUpFailed, signUpSuccess } from "./user.actions";
 import  user_actions  from "./user.actions.Constants";
 
 
 
-export function* getSnapshotFromUserAuth(userAuth){
-   try {
-    const userRef = yield call(createUserProfileDocument,userAuth)
-    const userSnapshot =yield userRef.get()
-     yield put(
+export function* getSnapshotFromUserAuth(userAuth, data) {
+
+  try {
+    const userRef = yield call(
+      createUserProfileDocument,
+      userAuth,
+      data
+    );
+    const userSnapshot = yield userRef.get();
+    yield put(
       signInSuccess({
         id: userSnapshot.id,
         ...userSnapshot.data(),
       })
     );
-
   } catch (error) {
-      yield put(signInFailed(error))
-       
+    yield put(signInFailed(error));
   }
 }
 
@@ -86,10 +89,38 @@ export function* onSignOutStart(){
 }
 
 
+export function* signInAfterSignUp({payload:{ user, data }}) {
+  console.log(data);
+  console.log(user);
+  yield getSnapshotFromUserAuth(user, data);
+}
+
+export function* onSignUpSuccess(){
+  yield takeLatest(user_actions.SIGN_UP_SUCCESS,signInAfterSignUp)
+}
+
+export function* signUp({ payload: { displayName, email, password } }) {
+  try {
+     const { user } = yield auth.createUserWithEmailAndPassword(
+       email,
+       password
+     );
+      yield put(signUpSuccess({user,data: {displayName}}))
+
+  } catch (error) {
+    yield put(signUpFailed(error))
+  }
+}
+
+export function* onSignUpStart(){
+  yield takeLatest(user_actions.SIGN_UP_START,signUp)
+}
+
+
 //User Root Saga 
 
 export function* userSagas(){
-    yield all([call(onGoogleSignInStart),call(onEmailSignInStart),call(onCheckUserSession),call(onSignOutStart)])
+    yield all([call(onGoogleSignInStart),call(onEmailSignInStart),call(onCheckUserSession),call(onSignOutStart),call(onSignUpStart),call(onSignUpSuccess)])
 }
 
 

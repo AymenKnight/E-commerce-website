@@ -8,5 +8,8 @@
    SIGN_OUT_START: "Sign_Out_Start",
    SIGN_OUT_SUCCESS: "Sign_Out_Success",
    SIGN_Out_FAILED: "Sign_Out_Failed",
+   SIGN_UP_START: "Sign_UP_Start",
+   SIGN_UP_SUCCESS: "Sign_UP_Success",
+   SIGN_UP_FAILED: "Sign_UP_Failed",
  };
 export default user_actions

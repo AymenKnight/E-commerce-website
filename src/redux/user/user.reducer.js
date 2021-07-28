@@ -29,6 +29,11 @@ const initialState = {
          ...state,
          error: action.payload,
        };
+     case user_actions.SIGN_UP_FAILED:
+       return {
+         ...state,
+         error: action.payload,
+       };
 
      default:
        return state;

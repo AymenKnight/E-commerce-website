@@ -29,7 +29,12 @@ export const cartReducer=(state=initial_State,action)=>{
                 ...state,
                 cartItems :decreaseItemQuantity(state.cartItems,action.payload)
             }
-
+        case cart_actions.CLEAR_CART_ITEAMS :
+            return {
+                ...state,
+                cartItems:[]
+            }
+            
        default:
           return state
    }
