@@ -18,7 +18,7 @@ function App(props) {
 
   useEffect(() => {
     checkUserSession();
-   /* let unsubscribe;
+    /* let unsubscribe;
     unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       console.log(userAuth);
       if (userAuth) {
@@ -34,7 +34,7 @@ function App(props) {
     return function cleanup() {
       unsubscribe();
     };*/
-  }, [0]);
+  }, [checkUserSession]);
 
   return (
     <div>

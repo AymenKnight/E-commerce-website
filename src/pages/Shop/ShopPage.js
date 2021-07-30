@@ -17,7 +17,7 @@ const CollectionPageWithSpinner = With_Spinner(CollectionPage);
    useEffect(() => {
      fetchCollectionsStart();
      return () => {};
-   }, [0]);
+   }, [fetchCollectionsStart]);
 
    return (
      <div>

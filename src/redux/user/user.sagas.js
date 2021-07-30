@@ -89,7 +89,8 @@ export function* onSignOutStart(){
 }
 
 
-export function* signInAfterSignUp({payload:{ user, data }}) {
+export function* signInAfterSignUp({payload}) {
+  const {user,data}=payload
   console.log(data);
   console.log(user);
   yield getSnapshotFromUserAuth(user, data);
