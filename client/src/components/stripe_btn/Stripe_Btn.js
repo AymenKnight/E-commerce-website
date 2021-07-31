@@ -1,11 +1,24 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
+import axios  from "axios"
 
 export default function Stripe_Btn({price}) {
 
-    const onToken=token=>{
-        console.log("PAy Operation with Token = ", token)
-        alert("Payment Successful !")
+    const onToken=token=>{     
+      axios({
+        url:'http://localhost:5000/payment',
+        method:"post",
+        data :{
+          token,
+          amount :priceForStripe
+        }
+       
+      }).then(res=>{
+                alert("Payment Successful !");
+      }).catch(error=>{
+        console.log("error is : ",JSON.parse(error))
+        alert("There was an issus in your Payment process, Please make sure you use the provided credit cart !! ")
+      })
     }
 
     const priceForStripe=price*100;
@@ -16,7 +29,7 @@ export default function Stripe_Btn({price}) {
         amount={priceForStripe}
         label="Pay Now"
         panelLabel="Pay Now"
-        currency="DZ"
+        currency="USD"
         billingAddress
         shippingAddress
         stripeKey={publishKey}
