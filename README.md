@@ -18,7 +18,7 @@ You can check out the live demo of the e-commerce clothes store web app [here](h
 To install and run the e-commerce clothes store web app locally, follow these steps:
 
 1. Clone the repository:
-git clone https://github.com/your-username/e-commerce-clothes-store.git
+git clone https://github.com/daouadji506/E-commerce-website.git
 2. Navigate to the project directory:
 cd e-commerce-clothes-store
 3. Install the dependencies:
@@ -38,21 +38,5 @@ The e-commerce clothes store web app relies on the following dependencies:
 
 You can find the complete list of dependencies in the `package.json` file.
 
-## File Structure
-
-Here is a brief overview of the file structure of the e-commerce clothes store web app:
-
-e-commerce-clothes-store/
-├── src/
-│ ├── components/ # Reusable React components
-│ ├── pages/ # Individual pages of the app
-│ ├── redux/ # Redux store, actions, and reducers
-│ ├── services/ # Firebase and Stripe integration services
-│ ├── utils/ # Utility functions
-│ ├── App.js # Main component containing routing logic
-│ └── index.js # Entry point of the app
-├── public/ # Static assets and index.html
-├── .env.example # Example environment variable configuration
-└── package.json # Project dependencies and scripts
 
 
