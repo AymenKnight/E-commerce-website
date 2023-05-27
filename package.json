@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "client": "cd client && npm start",
+    "client": "cd client && npm --openssl-legacy-provider start",
     "server": "nodemon server.js",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm --openssl-legacy-provider run build",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
